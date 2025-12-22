@@ -1,0 +1,22 @@
+[config]
+depth = 2
+files = [
+	"/home/user/.config/DankMaterialShell/settings.json",
+	"/home/user/.config/hypr/hyprland.conf",
+	"/home/user/.config/kitty/kitty.conf",
+	"/home/user/.config/matugen/config.toml",
+]
+
+[nixos]
+depth = 1
+files = [
+	"/etc/nixos/configuration.nix",
+	"/etc/nixos/flake.nix",
+	"/etc/nixos/packages.nix",
+]
+
+[dirs]
+"config/matugen/templates" = "/home/user/.config/matugen/templates"
+"scripts" = "/home/user/scripts"
+"wallpapers" = "/home/user/Pictures/wallpapers"
+"scripts/configs" = "/home/user/scripts/configs"

@@ -1,0 +1,36 @@
+[config]
+
+[templates.hyprland]
+input_path = '/home/user/.config/matugen/templates/hyprland-colors.conf'
+output_path = '~/.config/hypr/colors.conf'
+post_hook = 'hyprctl reload'
+
+[templates.micro]
+input_path = '/home/user/.config/matugen/templates/micro.micro'
+output_path = '~/.config/micro/colorschemes/matugen.micro'
+
+[templates.pywalfox]
+input_path = '/home/user/.config/matugen/templates/pywalfox-colors.json'
+output_path = '~/.cache/wal/colors.json'
+post_hook = 'pywalfox update'
+
+[templates.yazi]
+input_path = '/home/user/.config/matugen/templates/yazi-theme.toml'
+output_path = '~/.config/yazi/theme.toml'
+
+[templates.kitty]
+input_path = '/home/user/.config/matugen/templates/kitty-colors.conf'
+output_path = '~/.config/kitty/colors.conf'
+post_hook = 'pkill -SIGUSR1 kitty'
+
+[templates.slurp]
+input_path = '/home/user/.config/matugen/templates/slurp.conf'
+output_path = '/home/user/scripts/configs/slurp.conf'
+
+[templates.ferdium]
+input_path = '/home/user/.config/matugen/templates/ferdium.css'
+output_path = '/home/user/.config/Ferdium/config/custom.css'
+
+[templates.Obsidian]
+input_path = '/home/user/.config/matugen/templates/obsidian.css'
+output_path = '/home/user/programs/obsidian/HackTheBox/.obsidian/themes/matugen.css'

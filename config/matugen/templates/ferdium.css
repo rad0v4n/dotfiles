@@ -1,0 +1,23 @@
+html {
+	box-shadow: none;
+}
+
+.theme__dark .app .sidebar {
+    background: {{colors.surface.default.hex}};
+}
+
+.theme__dark .tab-item.is-active {
+    background: {{colors.surface_container.default.hex}};    
+}   
+
+.theme__dark .tab-item {
+	box-shadow: none;
+}
+
+.theme__dark .app .sidebar .sidebar__button {
+    color: {{colors.primary.default.hex}};
+}
+
+.settings .settings__header, .settings .settings__close, .settings-navigation .settings-navigation__link.is-active, a.button, button.button, .info-bar, .info-bar.info-bar--primary, .infobox.infobox--primary, .theme__dark .badge.badge--primary, .badge.badge--primary, .content-tabs .content-tabs__tabs .content-tabs__item.is-active, #electron-app-title-bar .toolbar-dropdown:not(.open) > .toolbar-button > button:hover, #electron-app-title-bar .list-item.selected .menu-item, #electron-app-title-bar .list-item.selected:focus .menu-item, .theme__dark .quick-switch .active, .franz-form .franz-form__toggle-wrapper .franz-form__toggle.is-active .franz-form__toggle-button, .theme__dark .franz-form__button, .franz-form__button, .ferdium__fab, .franz-form .franz-form__slider-wrapper .slider::-webkit-slider-thumb, span.loader div > div > div {
+    background: {{colors.primary.default.hex}};
+}
