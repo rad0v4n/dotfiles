@@ -18,7 +18,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "nixos";
-
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -77,7 +76,7 @@
 
   # Allow unfree packages and flakes
   nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  #nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   environment.systemPackages = import ./packages.nix { inherit pkgs; };
 
@@ -117,7 +116,7 @@
   	  };
   };
 
-  programs.dank-material-shell = {
+  programs.dms-shell = {
     enable = true;
   
     systemd = {
