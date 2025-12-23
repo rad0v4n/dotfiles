@@ -1,7 +1,8 @@
 # packages.nix
-{ pkgs }:
+{ pkgs, ... }:
 
-with pkgs; [
+{
+  environment.systemPackages = with pkgs; [
   	#hyprland
 	hyprcursor
 	hyprpolkitagent
@@ -66,4 +67,5 @@ with pkgs; [
 	qogir-icon-theme
 	adw-gtk3
 	papirus-icon-theme
-  ]
+  ];
+}

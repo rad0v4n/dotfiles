@@ -12,6 +12,8 @@ depth = 1
 files = [
 	"/etc/nixos/configuration.nix",
 	"/etc/nixos/packages.nix",
+	"/etc/nixos/programs.nix",
+	"/etc/nixos/services.nix",
 ]
 
 [dirs]
