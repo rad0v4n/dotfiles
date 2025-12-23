@@ -13,9 +13,9 @@
 	hardware.graphics.enable = true;
 	services.xserver.videoDrivers = [ "nvidia" ];
 	hardware.nvidia = {
-	open = false;
-	modesetting.enable = true;
-	powerManagement.enable = true;
+		open = false;
+		modesetting.enable = true;
+		powerManagement.enable = true;
 	};
 
 	boot.loader.systemd-boot.enable = true;
@@ -69,8 +69,10 @@
 	# virtual machines
 	programs.virt-manager.enable = true;
 	users.groups.libvirtd.members = ["user"];
-	virtualisation.libvirtd.enable = true;
-	virtualisation.spiceUSBRedirection.enable = true;
+	virtualisation = {
+		libvirtd.enable = true;
+		spiceUSBRedirection.enable = true;
+	};
 
 	system.stateVersion = "25.11";
 }
