@@ -2,5 +2,5 @@
 depth = 1
 files = [
 	"/home/user/scripts/bobs.py",
-	"/home/user/programs/obsidian/HackTheBox/other/bobs/README.md.md",
+	"/home/user/programs/obsidian/HackTheBox/other/bobs/README.md",
 ]
