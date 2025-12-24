@@ -155,7 +155,13 @@ def main():
     global stats, destination, skipUnchanged, files
 
     configName, destination, skipUnchanged, disableBanner, keepRedundant = parseFlags()
-    config = readFile(configName)
+
+    try:
+        config = readFile(configName)
+    except FileNotFoundError as error:
+        printColored('red', f'[!] Failed to read config: {error}')
+        sys.exit(1)
+
     stats = {'new': 0, 'same': 0, 'changed': 0, 'failed': 0, 'removed': 0}
     files = []
     
