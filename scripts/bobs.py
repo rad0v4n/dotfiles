@@ -23,10 +23,14 @@ def copyFile(src, dest, relPath):
     if not os.path.exists(src):
         printError(f'Source file does not exist: {src}')
         return
+
     createDir(dest.parent)
     printAction(src, dest, relPath)
+    files.append(str(dest))
+
     if os.path.exists(dest) and filecmp.cmp(src, dest):
         return
+
     shutil.copyfile(src, dest)
 
 def copyFiles(section, files, depth):
@@ -45,6 +49,29 @@ def copyDir(dest, directory):
         return
     
     copyFiles(dest, files, 1)
+
+def listFiles(directory):
+    basePath = pathlib.Path(directory)
+    files = []
+
+    for path in basePath.rglob("*"):
+        if path.is_file() and not any(part.startswith(".") for part in path.parts):
+            files.append(str(path))
+
+    return files
+
+def remFiles(files):
+    for file in files:
+        try:
+            printColored('red', f'[-] {file}')
+            os.remove(file)
+            stats['removed'] += 1
+        except:
+            printColored('red', f'[!] Failed to remove file: {file}')
+
+
+def difLists(backupList, allList):
+    return list(set(backupList) - set(allList))
 
 def printColored(color, text, p=True):
     codes = {
@@ -76,10 +103,11 @@ def printAction(src, dest, relPath):
 
 def printStats(stats):
     print(
-        f'{printColored('green', f'Created: {stats['new']}', False)} '      \
-        f'{printColored('yellow', f'Unchanged: {stats['same']}', False)} '  \
-        f'{printColored('purple', f'Changed: {stats['changed']}', False)} ' \
-        f'{printColored('red', f'Failed: {stats['failed']}', False)}'
+        f'{printColored('green', f'Created: {stats['new']}', False)} | '       \
+        f'{printColored('yellow', f'Unchanged: {stats['same']}', False)} | '   \
+        f'{printColored('purple', f'Changed: {stats['changed']}', False)} | '  \
+        f'{printColored('red', f'Failed: {stats['failed']}', False)} | '       \
+        f'{printColored('red', f'Removed: {stats['removed']}', False)} '
     )
     
 def printError(error):
@@ -119,27 +147,30 @@ def parseFlags():
     return args.config, args.destination, args.skip_unchanged, args.disable_banner
 
 def main():
-    global stats, destination, skipUnchanged
+    global stats, destination, skipUnchanged, files
 
+    configName, destination, skipUnchanged, disableBanner = parseFlags()
+    config = readFile(configName)
+    stats = {'new': 0, 'same': 0, 'changed': 0, 'failed': 0, 'removed': 0}
+    files = []
+    
     banner = r'''
-┌──────────────────────────────────┐
+╭──────────────────────────────────╮
 │  _         _                     │
 │ | |__  ___| |__ ___  _ __ _  _   │
 │ | '_ \/ _ \ '_ (_-<_| '_ \ || |  │
 │ |_.__/\___/_.__/__(_) .__/\_, |  │
 │                     |_|   |__/   │
 │ barely operational backup script │
-└──────────────────────────────────┘
+╰──────────────────────────────────╯
               '''
-    configName, destination, skipUnchanged, disableBanner = parseFlags()
     if not disableBanner:
         printColored('blue', banner)
-    config = readFile(configName)
-    stats = {'new': 0, 'same': 0, 'changed': 0, 'failed': 0}
-
+        
     printColored('blue', f'Config: {configName}')
     printColored('blue', f'Destination: {destination}')
 
+    # copy files
     createDir(destination)
     for section, items in config.items():
         if section == 'dirs':
@@ -147,6 +178,12 @@ def main():
                 copyDir(dest, directory)
         else:
             copyFiles(section, items.get('files', []), items.get('depth'))
-    printStats(stats)
+    
+    # remove redundant files
+    allFiles = listFiles(destination)
+    diffs = difLists(allFiles, files)
+    remFiles(diffs)
 
+    printStats(stats)
+    
 main()
