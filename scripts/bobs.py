@@ -70,7 +70,7 @@ def remFiles(files):
             printColored('red', f'[!] Failed to remove file: {file}')
 
 
-def difLists(backupList, allList):
+def diffLists(backupList, allList):
     return list(set(backupList) - set(allList))
 
 def printColored(color, text, p=True):
@@ -126,12 +126,12 @@ def parseFlags():
     parser.add_argument(
         '-c', '--config',
         default = f'{os.getcwd()}/config.toml',
-        help = 'set custom config file path (default: config.toml)'
+        help = 'set custom config file path (default: ./config.toml)'
     )
     parser.add_argument(
         '-d', '--destination',
         default = f'{os.getcwd()}/backup-{getTime()}',
-        help='set custom destination path (default: backup)'
+        help='set custom destination path (default: ./backup)'
     )
     parser.add_argument(
         '-s', '--skip-unchanged',
@@ -143,13 +143,18 @@ def parseFlags():
         action = 'store_true',
         help = 'disable decorative banner'
     )
+    parser.add_argument(
+        '-r', '--keep-redundant',
+        action = 'store_true',
+        help = 'do not remove redundant files'
+    )
     args = parser.parse_args()
-    return args.config, args.destination, args.skip_unchanged, args.disable_banner
+    return args.config, args.destination, args.skip_unchanged, args.disable_banner, args.keep_redundant
 
 def main():
     global stats, destination, skipUnchanged, files
 
-    configName, destination, skipUnchanged, disableBanner = parseFlags()
+    configName, destination, skipUnchanged, disableBanner, keepRedundant = parseFlags()
     config = readFile(configName)
     stats = {'new': 0, 'same': 0, 'changed': 0, 'failed': 0, 'removed': 0}
     files = []
@@ -180,9 +185,10 @@ def main():
             copyFiles(section, items.get('files', []), items.get('depth'))
     
     # remove redundant files
-    allFiles = listFiles(destination)
-    diffs = difLists(allFiles, files)
-    remFiles(diffs)
+    if not keepRedundant:
+        allFiles = listFiles(destination)
+        diffs = diffLists(allFiles, files)
+        remFiles(diffs)
 
     printStats(stats)
     
