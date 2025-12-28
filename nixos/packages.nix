@@ -48,6 +48,8 @@
 	kitty
 	vscode
 	eog
+	kdePackages.kdenlive
+	libqalculate
 
 	# cybersecurity
 	caido
