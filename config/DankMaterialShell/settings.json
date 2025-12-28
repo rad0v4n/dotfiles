@@ -102,7 +102,7 @@
   "useAutoLocation": false,
   "weatherEnabled": false,
   "networkPreference": "ethernet",
-  "vpnLastConnected": "420484ca-8cf5-4fa3-a96f-e92127ae28e4",
+  "vpnLastConnected": "1f61ff8a-42ff-4762-a473-9f4134356260",
   "iconTheme": "Papirus-Dark",
   "launcherLogoMode": "os",
   "launcherLogoCustomPath": "",
@@ -271,6 +271,10 @@
       ],
       "rightWidgets": [
         {
+          "id": "dankActions:variant_1766946348194",
+          "enabled": true
+        },
+        {
           "id": "network_speed_monitor",
           "enabled": true
         },
@@ -280,18 +284,12 @@
         },
         {
           "id": "memUsage",
-          "enabled": true
-        },
-        {
-          "id": "keyboard_layout_name",
-          "enabled": true
+          "enabled": true,
+          "showSwap": false
         },
         {
           "id": "controlCenterButton",
-          "enabled": true,
-          "showNetworkIcon": true,
-          "showBluetoothIcon": true,
-          "showAudioIcon": true
+          "enabled": true
         }
       ],
       "spacing": 0,

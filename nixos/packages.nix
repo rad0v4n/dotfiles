@@ -50,6 +50,7 @@
 	eog
 	kdePackages.kdenlive
 	libqalculate
+	veracrypt
 
 	# cybersecurity
 	caido
