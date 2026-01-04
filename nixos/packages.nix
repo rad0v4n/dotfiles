@@ -27,7 +27,8 @@
 	fastfetch
 	firefox
 	micro
-	vesktop
+	#vesktop
+	legcord
 	gparted
 	mullvad
 	mullvad-browser	
@@ -51,6 +52,7 @@
 	kdePackages.kdenlive
 	libqalculate
 	veracrypt
+	neovim
 
 	# cybersecurity
 	caido

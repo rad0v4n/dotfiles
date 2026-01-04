@@ -34,3 +34,7 @@ output_path = '/home/user/.config/Ferdium/config/custom.css'
 [templates.Obsidian]
 input_path = '/home/user/.config/matugen/templates/obsidian.css'
 output_path = '/home/user/programs/obsidian/HackTheBox/.obsidian/themes/matugen.css'
+
+[templates.vesktop]
+input_path = '/home/user/.config/matugen/templates/midnight-discord.css'
+output_path = '/home/user/.config/legcord/themes/midnight-discord.css'
