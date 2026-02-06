@@ -49,7 +49,7 @@
 	kitty
 	vscode
 	eog
-	kdePackages.kdenlive
+	#kdePackages.kdenlive
 	libqalculate
 	veracrypt
 	neovim

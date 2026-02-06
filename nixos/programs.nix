@@ -12,7 +12,6 @@
 		steam.enable = true;
 		noisetorch.enable = true;
 
-
 		hyprland = {
 		      enable = true;
 		      withUWSM = true;
